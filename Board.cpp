@@ -3,18 +3,18 @@
 #include "Board.hpp"
 
 Board::Board() {
-	numCols = 3;
 	numRows = 3;
+	numCols = 3;
 }
 
 Board::Board(int m) {
-	numCols = m;
 	numRows = m;
+	numCols = m;
 }
 
 Board::Board(int m, int n) {
-	numCols = m;
-	numRows = n;
+	numRows = m;
+	numCols = n;
 }
 
 Board::~Board() {
