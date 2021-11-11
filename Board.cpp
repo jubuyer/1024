@@ -21,6 +21,14 @@ Board::~Board() {
 
 }
 
+// void Board::setGoal(int goal) {
+// 	this->goal = goal;
+// }
+
+// void Board::clear(){
+// 	this->max = 0;
+// }
+
 void Board::print() const {
 	int rows = this->numRows;
 	int cols = this->numCols;
@@ -38,12 +46,12 @@ void Board::print() const {
 	for(int j = 0; j < rows*2; j++) {
 		for (int k = 0; k < cols; k++) {
 			if ((k == 0) && ((j % 2) == 0)) {
-				std::cout << "|";
+				std::cout << "|"; //first "border"
 			}
-			if (j % 2 == 0) {
+			if (j % 2 == 0) { //if the row is even print the middle
 				std::cout << "    |";
-			} else if ((k == 0) && (j % 2) != 0) {
-				std::cout << "+----+";
+			} else if ((k == 0) && (j % 2) != 0) { //if row is odd 
+				std::cout << "+----+";			   // print the seperator
 			} else if ((j%2) != 0) {
 				std::cout << "----+";
 			}
