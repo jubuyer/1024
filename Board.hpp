@@ -1,15 +1,15 @@
 //File name: /Users/laptopuser/Documents/cs135_codes/projects/game1024/Board.hpp
-#ifndef BOARD_H 
-#define BOARD_H 
+#ifndef BOARD_H
+#define BOARD_H
 class Board
 {
 private:
-    int** panel; 
+    int** panel;
        //two dimensional array with numRows rows
        //and numCols columns
-    int numRows; 
+    int numRows;
     int numCols;
-    int goal; //what is the goal
+    int target; //what is the goal
     int max; //the current max in all cells of panel
 
 public:
