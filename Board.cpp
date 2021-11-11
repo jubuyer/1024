@@ -6,19 +6,24 @@ Board::Board() {
 	panel[3][3];
 	numRows = 3;
 	numCols = 3;
-	//this->setGoal(32);
+	target = 32;
+	max = 0;
 }
 
 Board::Board(int m) {
 	panel[m][m];
 	numRows = m;
 	numCols = m;
+	target = 32;
+	max = 0;
 }
 
 Board::Board(int m, int n) {
 	panel[m][n];
 	numRows = m;
 	numCols = n;
+	target = 32;
+	max = 0;
 }
 
 Board::~Board() {
@@ -54,7 +59,7 @@ void Board::print() const {
 			}
 			if (j % 2 == 0) { //if the row is even print the middle
 				std::cout << "    |";
-			} else if ((k == 0) && (j % 2) != 0) { //if row is odd 
+			} else if ((k == 0) && (j % 2) != 0) { //if row is odd
 				std::cout << "+----+";			   // print the seperator
 			} else if ((j%2) != 0) {
 				std::cout << "----+";
