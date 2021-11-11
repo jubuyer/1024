@@ -3,16 +3,20 @@
 #include "Board.hpp"
 
 Board::Board() {
+	panel[3][3];
 	numRows = 3;
 	numCols = 3;
+	//this->setGoal(32);
 }
 
 Board::Board(int m) {
+	panel[m][m];
 	numRows = m;
 	numCols = m;
 }
 
 Board::Board(int m, int n) {
+	panel[m][n];
 	numRows = m;
 	numCols = n;
 }
