@@ -36,9 +36,9 @@ only gain a 1 if the direction you have selected moves any of the squares!
 ---
 ### Tasks
 | Project Tasks           | Description                                                   |
-|-----------------|---------------------------------------------------------------|
+|-----------------|:---------------------------------------------------------------:|
 |Task A           |Define constructors, destructor, and method print for Board.cpp. Note that an number is displayed in a cell with 4-character wide, so use setw(4) to display a non-zero number or empty space representing zero in the panel                            |
-|Task B           | Define code to select a random cell with value 1. That is, define selectRandomCell method of Board.cpp. |
+|Task B           | Define code to select a random cell with value 1. That is, define selectRandomCell method of Board.cpp. ![Instructions](https://cdn.discordapp.com/attachments/741117859081748641/908491820646924308/unknown.png)|
 |Task C           | Define code to press UP, DOWN, LEFT, RIGHT. That is, define pressUp, pressDown, pressLeft and pressRight methods of Board.cpp.   |
 |Task D           | Define code to play a game, that is, define start method in Board.cpp. |
 
