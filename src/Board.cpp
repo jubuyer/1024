@@ -61,7 +61,8 @@ void Board::selectRandomCell(int& row, int& col) {
 		}
 	}
 	if(noAdjacentSameValue()) {
-		std::cout << "Game over. Try again."
+		std::cout << "Game over. Try again.";
+		return;
 	}
 }
 
