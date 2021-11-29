@@ -43,7 +43,7 @@ void Board::allocateMemory() {
 }
 
 Board::~Board() {
-	n
+
 }
 
 // void Board::setTarget(int goal) {
