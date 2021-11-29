@@ -124,3 +124,23 @@ In this task, only submit Board.cpp to gradescope for grading. However, you shou
 Board.hpp and Board.cpp in the same directory of local computer for compilation.
 After finishing this task, your Board.cpp does not run yet, use g++ -std=c++11 -c Board.cpp to
 check compilation errors.
+
+# Task C Hints
+Define code to press UP, DOWN, LEFT, RIGHT. That is, define pressUp, pressDown, pressLeft
+and pressRight methods of Board.cpp.  
+Note that selectRandomCell method is called in these above methods. In case your version of
+selectRandomCell in Task B has errors, you would fail Task C. To avoid that scenario, we provide 
+a corrected version of selectRandomCell in gradescope scripts. As a result, do not include your
+definition of selectRandomCell and constructors/destructor in submission of Task C.  
+1. From the submission of Task B, which includes print and selectRandomCell methods,
+add definition of pressLeft, pressRight, pressDown, and pressUp methods.
+2. When you define pressLeft, pressRight, pressDown, and pressUp methods, remember to
+call selectRandomCell method in the end. This is because, after an arrow key is pressed,
+a random empty cell is selected and number 1 is put in that cell, these steps are defined
+in selectRandomCell.
+3. Before submission, comment the definition of selectRandomCell since a correct version
+of it will be provided by gradescope scripts. If you include the definition of
+selectRandomCell method in submission of Task C, compiler would complain that that
+method is redefined.
+In short, only include codes for pressLeft, pressRight, pressUp, pressDown, and print
+methods in Task C.
