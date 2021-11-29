@@ -95,3 +95,32 @@ row\col 0    1    2
      +----+----+----+
 Then the number of empty cells is 7. We create an array with 7 integers.
 ```
+Start label empty seats from zero. From first row, move from left to right, afterwards,
+go to the second row, move from left to right, and so on.  
+The first empty cell with row index 0 and column index 0 is represented by 0.  
+The second empty cell with row index 0 and column index 2 is represented by 2.  
+The third empty cell with row index 1 and column index 0 is represented by 3.  
+The fourth empty cell with row index 1 and column index 2 is represented by 5.  
+Similarly, the last three empty cells (in the last row) are presented by 6, 7, and 8,
+respectively.  
+  
+That is, we have an array [0, 2, 3, 5, 6, 7, 8].
+If you cannot represent the cell’s row and column by an integer, here is another
+approach. Define a struct to represent row and column, then use an array or vector of
+this struct (a struct is a type) to record row and column information of each empty cell.  
+  
+- (d) Select a random element from the above array or vector, then convert the int back to
+its original row and column, set the corresponding cell by 1.
+For example, suppose a random integer 23 is generated, then 23 % 7 returns 2, where
+7 is the size of the array. The remainder of any int divided by 7 falls in [0, 6], which is a
+range of valid indices of an array of size 7.
+The element indexed at 2 in the above array is 3, which corresponds to an empty cell
+with row index 1 and column index 0. You need to convert 3 back to row index 1 and
+column index 0 in a 3 x 3 panel. Afterwards, put number 1 to this cell.
+- (e) Print the updated panel with the added cell.
+- (f) With the added cell, if every cell is filled up and no adjacent cells with same values,
+print “Game over. Try again.” Then exit the program.
+In this task, only submit Board.cpp to gradescope for grading. However, you should keep
+Board.hpp and Board.cpp in the same directory of local computer for compilation.
+After finishing this task, your Board.cpp does not run yet, use g++ -std=c++11 -c Board.cpp to
+check compilation errors.
