@@ -11,23 +11,39 @@ Board::Board() {
 }
 
 Board::Board(int m) {
-	panel[m][m];
-	numRows = m;
-	numCols = m;
+	if (m >= 1) {
+		numRows = m;
+		numCols = m;
+		panel[m][m];
+	} else {
+		numRows = 3;
+		numCols = 3;
+		panel[3][3];
+	}
 	target = 32;
 	max = 0;
 }
 
 Board::Board(int m, int n) {
-	panel[m][n];
-	numRows = m;
-	numCols = n;
+	if ((m >= 1) && (n >= 1)) {
+		numRows = m;
+		numCols = n;
+		panel[m][n];
+	} else {
+		numRows = 3;
+		numCols = 3;
+		panel[3][3];
+	}
 	target = 32;
 	max = 0;
 }
 
-Board::~Board() {
+void Board::allocateMemory() {
 
+}
+
+Board::~Board() {
+	n
 }
 
 // void Board::setTarget(int goal) {
