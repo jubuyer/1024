@@ -2,85 +2,130 @@
 
 #include "Board.hpp"
 
-Board::Board() {
-	panel[3][3];
-	numRows = 3;
-	numCols = 3;
-	target = 32;
-	max = 0;
-}
+Board::Board():Board(3, 3) {}
 
-Board::Board(int m) {
-	if (m >= 1) {
-		numRows = m;
-		numCols = m;
-		panel[m][m];
-	} else {
-		numRows = 3;
-		numCols = 3;
-		panel[3][3];
-	}
-	target = 32;
-	max = 0;
-}
+Board::Board(int m):Board(m, m) {}
 
-Board::Board(int m, int n) {
-	if ((m >= 1) && (n >= 1)) {
-		numRows = m;
-		numCols = n;
-		panel[m][n];
-	} else {
-		numRows = 3;
-		numCols = 3;
-		panel[3][3];
-	}
-	target = 32;
+Board::Board(int m, int n) { 
+    if(m >= 1 && n >= 1) {
+        numRows = m;
+        numCols = n;
+    } else { 
+        numRows = 3; 
+        numCols = 3;
+    }
+
+	allocateMemory();
+	setTarget(32);
 	max = 0;
 }
 
 void Board::allocateMemory() {
-
+	panel = new int*[numRows];
+	for(int i = 0; i < numRows; i++) {
+		panel[i] = new int[numCols];
+	}
 }
 
 Board::~Board() {
+	for(int i = 0; i < numRows; i++) {
+		delete[] panel[i];
+		panel[i] = nullptr;
+	}
 
+	delete[] panel;
+	panel = nullptr;
 }
 
-// void Board::setTarget(int goal) {
-// 	this->goal = goal;
-// }
+void Board::setTarget(int target) {
+	this->target = target;
+}
 
-// void Board::clear(){
-// 	this->max = 0;
-// }
+void Board::clear(){
+	for(int i = 0; i < numRows; i++) {
+		for(int j = 0; j < numCols; j++) {
+			panel[i] == 0;
+		}
+	}
+}
 
-void Board::print() const {
-	int rows = this->numRows;
-	int cols = this->numCols;
-
-	//top border of the board
-	for(int i = 0; i < cols; i++) {
+void printBorder(int num) {
+		for(int i = 0; i < num; i++) {
 		if (i == 0) {
 			std::cout << "+";
 		}
 		std::cout << "----+";
 	}
 
+}
+
+void Board::print() const {
+	//explained by gavin xiao 
+	for(int i = 0; i < numRows; i++) {
+        printBorder(numCols);
+        std::cout << "\n|";
+
+        for(int j = 0; j < numCols; j++) {
+            std::string temp = "";
+            for(int k = 0; k < 4 - std::to_string(panel[i][j]).length(); k++) {
+                temp += " "; 
+            }
+
+            if(panel[i][j] == 0) { 
+                temp += " ";
+            } else {
+                temp += std::to_string(panel[i][j]);
+            }
+
+            std::cout << temp << "|";
+        }
+
+        std::cout << "\n";
+    }
+
+    // Prints out the bottom of the board +----+
+    printBorder(numCols);
+    std::cout << "\n";
+
+    /*	****************DOES NOT FUNCTION**********************
+	//top border of the board
+
 	std::cout << '\n'; //skip to next iterations of the board border
 
-	for(int j = 0; j < rows*2; j++) {
-		for (int k = 0; k < cols; k++) {
-			if ((k == 0) && ((j % 2) == 0)) {
-				std::cout << "|"; //first "border"
-			}
-			if (j % 2 == 0) { //if the row is even print the middle
-				std::cout << "    |";
-			} else if ((k == 0) && (j % 2) != 0) { //if row is odd
-				std::cout << "+----+";			   // print the seperator
-			} else if ((j%2) != 0) {
-				std::cout << "----+";
-			}
+	// int l = 0;
+	for(int j = 0; j < numRows; j++) {
+		for (int k = 0; k < numCols; k++) {
+			// if ((k == 0) && ((j % 2) == 0)) {
+			// 	std::cout << "|"; //first "border"
+			// }
+			// if (j % 2 == 0) { //if the row is even print the middle
+			// 	std::cout << "   ";
+			// 	if (panel[l][k] == 0) {
+			// 		std::cout << " ";
+			// 	} else {
+			// 		std::cout << panel[l][k];
+			// 	}
+			// 	std::cout << "|";
+			// } else if ((k == 0) && (j % 2) != 0) { //if row is odd
+			// 	std::cout << "+----+";			   // print the seperator
+			// } else if ((j%2) != 0) {
+			// 	std::cout << "----+";
+			// }
+			std::string temp = "";
+            for(int k = 0; k < 4 - std::to_string(panel[i][j]).length(); k++) {
+                temp += " "; 
+            }
+
+            if(panel[i][j] == 0) { 
+                temp += " ";
+            } else {
+                temp += std::to_string(panel[i][j]);
+            }
+
+            std::cout << temp << "|";
 		}
+		//l++;
 		std::cout << '\n';
 	}
+	*****************DOES NOT FUNCTION********************* */
 }
