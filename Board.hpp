@@ -16,7 +16,7 @@ public:
     Board(); //construct a 3 x 3 panel
     Board(int m); //construct a m x m panel
     Board(int m, int n); //construct a m x n panel
-    void setGoal(int goal);
+    void setTarget(int goal);
         //set goal of the game
     ~Board(); //destructor,
         //when no longer need the current object,

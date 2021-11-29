@@ -30,7 +30,7 @@ Board::~Board() {
 
 }
 
-// void Board::setGoal(int goal) {
+// void Board::setTarget(int goal) {
 // 	this->goal = goal;
 // }
 
