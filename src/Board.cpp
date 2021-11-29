@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #include "Board.hpp"
 
@@ -48,6 +50,48 @@ void Board::clear(){
 		}
 	}
 }
+
+void Board::selectRandomCell(int& row, int& col) {
+	int emptyCells = 0;
+	for(int i = 0; i < numRows; i++) {
+		for (int j = 0; j < numCols; j++) {
+			if (panel[i][j] == 0) {
+				emptyCells++;
+			}
+		}
+	}
+	if(noAdjacentSameValue()) {
+		std::cout << "Game over. Try again."
+	}
+}
+
+bool Board::noAdjacentSameValue() const {
+	for(int i = 0; i < numRows; i++) {
+		for (int j = 0; j < numCols; j++) {
+			if (panel[i][j] == 0) {
+				return false;
+			}
+		}
+	}
+	for(int i = 0; i < numRows; i++) {
+		for (int j = 0; j < numCols-1; j++) {
+			if(panel[i][j] == panel[i][j+1]) {
+				return false;
+			}
+		}
+	}
+	for(int i = 0; i < numRows-1; i++) {
+		for (int j = 0; j < numCols; j++) {
+			if(panel[i][j] == panel[i+1][j]) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+
 
 void printBorder(int num) {
 		for(int i = 0; i < num; i++) {
