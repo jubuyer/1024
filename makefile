@@ -25,9 +25,12 @@ all: run
 run:  TestBoard.o Board.o
 	$(CC) $(CFLAGS) -o $@ $^
 
+$(OBJDIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< $@
+
 # To create the object file RunCompetition.o, we need the source
 # files RunCompetition.cpp, Competition.h
-TestBoard.o:  TestBoard.cpp
+TestBoard.o: $(OBJDIR) TestBoard.cpp
 	$(CC) $(CFLAGS) -c $^
 
 # To create the object file Competition.o, we need the source
