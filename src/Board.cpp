@@ -1,19 +1,20 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-
+#include <vector>
+#include "time.h"
 #include "Board.hpp"
 
 Board::Board():Board(3, 3) {}
 
 Board::Board(int m):Board(m, m) {}
 
-Board::Board(int m, int n) { 
+Board::Board(int m, int n) {
     if(m >= 1 && n >= 1) {
         numRows = m;
         numCols = n;
-    } else { 
-        numRows = 3; 
+    } else {
+        numRows = 3;
         numCols = 3;
     }
 
@@ -46,24 +47,48 @@ void Board::setTarget(int target) {
 void Board::clear(){
 	for(int i = 0; i < numRows; i++) {
 		for(int j = 0; j < numCols; j++) {
-			panel[i] == 0;
+			panel[i] = 0;
 		}
 	}
 }
 
+struct Cell {
+	int row;
+	int col;
+};
+
 void Board::selectRandomCell(int& row, int& col) {
 	int emptyCells = 0;
+	std::vector<Cell> cellInfo;
+	if(noAdjacentSameValue()) {
+		std::cout << "Game over. Try again." << std::endl;
+		return;
+	}
+
 	for(int i = 0; i < numRows; i++) {
 		for (int j = 0; j < numCols; j++) {
 			if (panel[i][j] == 0) {
+				cellInfo.push_back(Cell());
+				cellInfo[emptyCells].row = i;
+				cellInfo[emptyCells].col = j;
 				emptyCells++;
 			}
 		}
 	}
+
+	//srand(time(1));
+	int value = rand() % cellInfo.size();
+
+	panel[cellInfo[value].row][cellInfo[value].col] = 1;
+
+	print();
+
 	if(noAdjacentSameValue()) {
-		std::cout << "Game over. Try again.";
+		std::cout << "Game over. Try again." << std::endl;
 		return;
 	}
+
+	return;
 }
 
 bool Board::noAdjacentSameValue() const {
@@ -105,7 +130,7 @@ void printBorder(int num) {
 }
 
 void Board::print() const {
-	//explained by gavin xiao 
+	//explained by gavin xiao
 	for(int i = 0; i < numRows; i++) {
         printBorder(numCols);
         std::cout << "\n|";
@@ -113,10 +138,10 @@ void Board::print() const {
         for(int j = 0; j < numCols; j++) {
             std::string temp = "";
             for(int k = 0; k < 4 - std::to_string(panel[i][j]).length(); k++) {
-                temp += " "; 
+                temp += " ";
             }
 
-            if(panel[i][j] == 0) { 
+            if(panel[i][j] == 0) {
                 temp += " ";
             } else {
                 temp += std::to_string(panel[i][j]);
@@ -158,10 +183,10 @@ void Board::print() const {
 			// }
 			std::string temp = "";
             for(int k = 0; k < 4 - std::to_string(panel[i][j]).length(); k++) {
-                temp += " "; 
+                temp += " ";
             }
 
-            if(panel[i][j] == 0) { 
+            if(panel[i][j] == 0) {
                 temp += " ";
             } else {
                 temp += std::to_string(panel[i][j]);
