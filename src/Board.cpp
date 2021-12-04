@@ -233,18 +233,7 @@ void Board::pressUp()
 								max = temp[k];
 
 						 temp[k+1] = 0;
-						 k++; //k-- to skip adjacent pair
-						 //temp[k-1] and temp[k-2]
-						 //since temp[k-1] is merged with
-						 //temp[k] already.
-						 //This line can be omitted after
-						 //setting temp[k-1] = 0;
-						 //since if temp[k-2] is not zero,
-						 //no way to merge since
-						 //temp[k-1] != temp[k-2],
-						 //if temp[k-2] is zero,
-						 //then 0 merged with 0 does not
-						 //result in any actual difference.
+						 k++;
 					}
 
 			int i = 0;  //to write in jth column of panel, starting from the last row since we press down key, whose row index is numRows-1.
@@ -277,7 +266,62 @@ void Board::pressUp()
 
 void Board::pressLeft()
 {
+	int* temp = new int[numCols];
+	int toWrite;
+	for (int j = 0; j < numRows; j++)
+	{
+			//initialize each element of temp to be 0
+			for (int k = 0; k < numCols; k++)
+					temp[k] = 0;
 
+			//copy the non-zeros from the jth row of panel to temp
+			toWrite = numCols -1; //next position to write in temp
+			for (int i = numCols-1; i >= 0; i--)
+					if (panel[j][i] > 0)
+					{
+						 temp[toWrite] = panel[j][i];
+						 toWrite--;
+					}
+
+			for (int k = 0; k < numCols-1; k++) //? k >= 0 is not correct, it would result in out of index exception in expression temp[k-1].
+					if (temp[k] == temp[k+1])
+					{
+						 temp[k] *= 2;
+
+						 //MISS
+						 if (max < temp[k])
+								max = temp[k];
+
+						 temp[k+1] = 0;
+						 k++;
+					}
+
+			int i = 0;  //to write in jth column of panel, starting from the last row since we press down key, whose row index is numRows-1.
+			int k = 0; //can use for loop for k
+			while (k < numRows)
+			{
+					if (temp[k] > 0)
+					{
+						 panel[j][i] = temp[k];
+						 i++;
+					}
+					k++;
+			}
+
+			//For the remaining elements in the jth column, pad with 0.
+			while (i < numRows)
+			{
+					panel[j][i] = 0;
+					i++;
+			}
+	}
+
+	delete[] temp;
+	temp = nullptr;
+
+	//MISS
+	int row = -1, col = -1;
+	selectRandomCell(row, col);
 }
 
 void Board::pressRight()
