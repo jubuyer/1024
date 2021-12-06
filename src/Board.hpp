@@ -1,22 +1,22 @@
 //File name: /Users/laptopuser/Documents/cs135_codes/projects/game1024/Board.hpp
-#ifndef BOARD_H 
-#define BOARD_H 
+#ifndef BOARD_H
+#define BOARD_H
 class Board
 {
 private:
-    int** panel; 
+    int** panel;
        //two dimensional array with numRows rows
        //and numCols columns
-    int numRows; 
+    int numRows;
     int numCols;
-    int goal; //what is the goal
+    int target; //what is the goal
     int max; //the current max in all cells of panel
 
 public:
     Board(); //construct a 3 x 3 panel
     Board(int m); //construct a m x m panel
     Board(int m, int n); //construct a m x n panel
-    void setGoal(int goal);
+    void setTarget(int goal);
         //set goal of the game
     ~Board(); //destructor,
         //when no longer need the current object,
